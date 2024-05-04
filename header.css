@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+.bar {
+  width: 100px;
+}
+
+.bar img {
+  width: 30px;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.icons img {
+  width: 26px;
+  padding-left: 5px;
+}
