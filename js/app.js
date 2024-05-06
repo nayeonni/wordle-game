@@ -34,14 +34,28 @@ function appStart() {
       const 정답_글자 = 정답[i];
       if (입력한_글자 === 정답_글자) {
         block.style.background = "#6baa64";
+        const rotate = {
+          transform: "rotateX(360deg)",
+        };
+
+        const timing = {
+          duration: 1000,
+          iterations: 1,
+        };
+
+        block.animate(rotate, timing);
         맞은_갯수 += 1;
       } else if (정답.includes(입력한_글자)) block.style.background = "#cab458";
-      else block.style.background = "#787c7e";
+      else {
+        block.style.background = "#787c7e";
+      }
 
       block.style.color = "white";
     }
 
-    if (맞은_갯수 === 5) gameover();
+    if (맞은_갯수 === 5) {
+      gameover();
+    }
     nextLine();
   };
 
@@ -87,6 +101,7 @@ function appStart() {
 
     timer = setInterval(SetTime, 1000);
   };
+
   startTimer();
   window.addEventListener("keydown", handleKeyDown);
 }
