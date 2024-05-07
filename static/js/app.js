@@ -1,5 +1,3 @@
-const 정답 = "APPLE";
-
 let attempts = 0;
 let index = 0;
 let timer;
@@ -9,7 +7,7 @@ function appStart() {
     const div = document.createElement("div");
     div.innerText = "GAME OVER";
     div.style =
-      "display:flex; justify-content:center; align-items:center; position:absolute; top:40vh; left:40vw; background-color : orange; width:110px; height:40px";
+      "display:flex; justify-content:center; align-items:center; position:absolute; top:40vh; left:45vw; background-color : orange; width:110px; height:40px";
     document.body.appendChild(div);
   };
 
@@ -24,14 +22,20 @@ function appStart() {
     index = 0;
   };
 
-  const handleEnterKey = () => {
+  const handleEnterKey = async () => {
     let 맞은_갯수 = 0;
+
+    //서버에서 정답을 받아오는 코드
+    const 응답 = await fetch("/answer");
+    const 정답 = await 응답.json();
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-column[data-index='${attempts}${i}']`
       );
       const 입력한_글자 = block.innerText;
       const 정답_글자 = 정답[i];
+
       if (입력한_글자 === 정답_글자) {
         block.style.background = "#6baa64";
         const rotate = {
@@ -44,6 +48,7 @@ function appStart() {
         };
 
         block.animate(rotate, timing);
+
         맞은_갯수 += 1;
       } else if (정답.includes(입력한_글자)) block.style.background = "#cab458";
       else {
